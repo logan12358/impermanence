@@ -166,6 +166,15 @@ let
           Whether to allow newer GIO-based applications to trash files.
         '';
       };
+      copyExisting = mkOption {
+        type = bool;
+        default = false;
+        example = true;
+        description = ''
+          Whether to copy existing data from the target
+          when first creating the source directory.
+        '';
+      };
       # Save the default permissions at the level the
       # directory resides. This used when creating its
       # parent directories, giving them reasonable
