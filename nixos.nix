@@ -324,6 +324,7 @@ in
                   , group
                   , mode
                   , enableDebugging
+                  , copyExisting
                   , ...
                   }:
                   let
@@ -335,6 +336,7 @@ in
                       (if group == null then users.${user}.group else group)
                       mode
                       enableDebugging
+                      copyExisting
                     ];
                   in
                   ''
@@ -372,7 +374,7 @@ in
                               user = dir.user;
                               group = users.${dir.user}.group;
                               inherit defaultPerms;
-                              inherit (dir) persistentStoragePath enableDebugging;
+                              inherit (dir) persistentStoragePath enableDebugging copyExisting;
                             };
                           in
                           if dir.home != null then
@@ -397,6 +399,7 @@ in
                               dirPath = dir.persistentStoragePath;
                               persistentStoragePath = "";
                               home = null;
+                              copyExisting = false;
                               inherit (dir) defaultPerms enableDebugging;
                               inherit (dir.defaultPerms) user group mode;
                             };
@@ -425,6 +428,7 @@ in
                               concatPaths [ dir.home path ]
                             else
                               path;
+                          copyExisting = false;
                           inherit (dir) persistentStoragePath home enableDebugging;
                           inherit (dir.defaultPerms) user group mode;
                         };

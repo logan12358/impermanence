@@ -310,6 +310,15 @@
          permissions. Changing this once the directory has been created
          has no effect.
 
+      - ~copyExisting~, whether to copy existing files. If the directory
+        doesn't already exist in persistent storage and the target
+        does already exist (i.e. on impermanent storage), the target's
+        contents will be copied to the persistent storage directory
+        whent it is created. Changing this once the directory has been
+        created has no effect. This is useful for (e.g.) installing with
+        `nixos-install` where `/nix` is mounted by impermanence from
+        persisted storage.
+
 ****** ~files~
 
        All files you want to link or bind to persistent storage. A
